@@ -1,20 +1,23 @@
-function Staff(centerX, centerY) {
+function Staff(staffX, staffY, bodyX, bodyY) {
   var radius = 10;
   var length = 200;
 
   var staffAngle = 0;
   var armAngle = 0;
 
+  this.staffRotation = -4;
+  this.armRotation = 2;
+
   function degreesToRadians(degrees) {
-    return Math.PI/180 * degrees;
+    return Math.PI / 180 * degrees;
   }
 
   function rotateArm(context, fn) {
     context.save();
 
-    context.translate(350, 300);
+    context.translate(bodyX, bodyY);
     context.rotate(degreesToRadians(armAngle));
-    context.translate(-350, -300);
+    context.translate(-bodyX, -bodyY);
 
     fn();
 
@@ -24,9 +27,9 @@ function Staff(centerX, centerY) {
 
   function rotateStaff(context, fn) {
     context.save();
-    context.translate(centerX, centerY);
+    context.translate(staffX, staffY);
     context.rotate(degreesToRadians(staffAngle));
-    context.translate(-centerX, -centerY);
+    context.translate(-staffX, -staffY);
 
     fn();
 
@@ -42,9 +45,9 @@ function Staff(centerX, centerY) {
         context.strokeStyle = 'white';
         context.lineWidth = 3;
         context.beginPath();
-        context.moveTo(centerX, centerY);
-        context.arc(centerX + length / 2 + radius / 2, centerY, radius, Math.PI, 3 * Math.PI, false);
-        context.arc(centerX - length / 2 - radius / 2, centerY, radius, 0, 2 * Math.PI, false);
+        context.moveTo(staffX, staffY);
+        context.arc(staffX + length / 2 + radius / 2, staffY, radius, Math.PI, 3 * Math.PI, false);
+        context.arc(staffX - length / 2 - radius / 2, staffY, radius, 0, 2 * Math.PI, false);
         context.closePath();
         context.stroke();
       });
@@ -56,16 +59,16 @@ function Staff(centerX, centerY) {
 
     rotateArm(context, function() {
       rotateStaff(context, function() {
-        context.strokeStyle = 'white';
+        context.strokeStyle = 'orange';
         context.lineWidth = 3;
 
         context.beginPath();
-        context.arc(centerX + length / 2 + radius / 2, centerY, radius, Math.PI, 3 * Math.PI, false);
+        context.arc(staffX + length / 2 + radius / 2, staffY, radius, Math.PI, 3 * Math.PI, false);
         context.closePath();
         context.stroke();
 
         context.beginPath();
-        context.arc(centerX - length / 2 - radius / 2, centerY, radius, 0, 2 * Math.PI, false);
+        context.arc(staffX - length / 2 - radius / 2, staffY, radius, 0, 2 * Math.PI, false);
         context.closePath();
 
         context.stroke();
@@ -74,7 +77,7 @@ function Staff(centerX, centerY) {
   };
 
   this.process = function() {
-    armAngle+=2;
-    staffAngle+=2;
+    armAngle += this.armRotation;
+    staffAngle += this.staffRotation;
   }
 }
