@@ -42,6 +42,7 @@ function Staff(centerX, centerY) {
     rotate(context, function() {
       context.strokeStyle = 'white';
       context.lineWidth = 3;
+
       context.beginPath();
       context.arc(centerX + length / 2 + radius / 2, centerY, radius, Math.PI, 3 * Math.PI, false);
       context.closePath();
