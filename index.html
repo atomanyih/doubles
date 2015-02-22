@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>doubles</title>
+  <script src="src/canvas.js"></script>
+  <script src="src/staff.js"></script>
+</head>
+
+<body style="background-color: black; overflow: hidden">
+<canvas id="view" width="1000" height="1000"></canvas>
+<script>
+  var canvas = new Canvas('view');
+
+  function loop(fn) {
+    function main() {
+      fn();
+      requestAnimationFrame(main);
+    }
+
+    main();
+  }
+
+  var staffA = new Staff(500, 300);
+  var staffB = new Staff(200, 300);
+
+  function doubles() {
+    canvas.clear();
+
+    staffA.draw(canvas);
+    staffB.draw(canvas);
+  }
+
+  loop(doubles);
+</script>
+
+</body>
+</html>
