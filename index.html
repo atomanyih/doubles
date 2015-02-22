@@ -5,12 +5,19 @@
   <title>doubles</title>
   <script src="src/canvas.js"></script>
   <script src="src/staff.js"></script>
+  <style>
+    canvas {
+      position: absolute;
+    }
+  </style>
 </head>
 
 <body style="background-color: black; overflow: hidden">
+<canvas id="trails" width="1000" height="1000"></canvas>
 <canvas id="view" width="1000" height="1000"></canvas>
 <script>
   var canvas = new Canvas('view');
+  var trails = new Canvas('trails');
 
   function loop(fn) {
     function main() {
@@ -26,9 +33,13 @@
 
   function doubles() {
     canvas.clear();
+    trails.fade();
 
     staffA.draw(canvas);
     staffB.draw(canvas);
+
+    staffA.drawTrails(trails);
+    staffB.drawTrails(trails);
   }
 
   loop(doubles);

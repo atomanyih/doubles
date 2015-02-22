@@ -3,7 +3,7 @@ function Canvas(elementId) {
 
   this.context = canvas.getContext('2d');
 
-  this.fitToWindow = function fitToWindow() {
+  this.fitToWindow = function() {
     this.height = window.innerHeight;
     this.width = window.innerWidth;
 
@@ -11,7 +11,12 @@ function Canvas(elementId) {
     canvas.width = this.width;
   };
 
-  this.clear = function clear() {
+  this.clear = function() {
     this.context.clearRect(0, 0, canvas.width, canvas.height);
-  }
+  };
+
+  this.fade = function() {
+    this.context.fillStyle = 'rgba(0,0,0,.05)';
+    this.context.fillRect(0, 0, canvas.width, canvas.height);
+  };
 }
