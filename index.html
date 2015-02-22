@@ -35,25 +35,14 @@
     canvas.clear();
     trails.fade();
 
-    function degreesToRadians(degrees) {
-      return Math.PI/180 * degrees;
-    }
-    var context = canvas.context;
-    context.translate(350, 300);
-    context.rotate(degreesToRadians(1));
-    context.translate(-350, -300);
-
-    var context = trails.context;
-    context.translate(350, 300);
-    context.rotate(degreesToRadians(1));
-    context.translate(-350, -300);
-
-
     staffA.draw(canvas);
     staffB.draw(canvas);
 
     staffA.drawTrails(trails);
     staffB.drawTrails(trails);
+
+    staffA.process();
+    staffB.process();
   }
 
   loop(doubles);
