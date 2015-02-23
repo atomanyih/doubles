@@ -28,12 +28,21 @@
     main();
   }
 
-  var staffA = new Staff(500, 300, 350, 300);
-  var staffB = new Staff(200, 300, 350, 300);
+  var staffA = new Staff(0, 300, 300);
+  var staffB = new Staff(180, 300, 300);
 
   function doubles() {
     canvas.clear();
     trails.fade();
+
+    var gridSize = 600;
+    var squareSize = gridSize/3;
+    canvas.context.strokeStyle = 'white';
+    canvas.context.strokeRect(0,0,gridSize,gridSize);
+    canvas.context.strokeRect(squareSize,0,squareSize*2,gridSize);
+    canvas.context.strokeRect(squareSize*2,0,squareSize,gridSize);
+    canvas.context.strokeRect(0,squareSize,gridSize,squareSize*2);
+    canvas.context.strokeRect(0,squareSize*2,gridSize,squareSize);
 
     staffA.draw(canvas);
     staffB.draw(canvas);
