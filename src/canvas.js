@@ -16,7 +16,7 @@ function Canvas(elementId) {
   };
 
   this.fade = function() {
-    this.context.fillStyle = 'rgba(0,0,0,.02)';
+    this.context.fillStyle = 'rgba(0,0,0,.01)';
     this.context.fillRect(0, 0, canvas.width, canvas.height);
   };
 }
