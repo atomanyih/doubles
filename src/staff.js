@@ -22,11 +22,11 @@ function Staff(staffX, staffY, bodyX, bodyY) {
     fn();
 
     context.restore();
-
   }
 
   function rotateStaff(context, fn) {
     context.save();
+
     context.translate(staffX, staffY);
     context.rotate(degreesToRadians(staffAngle));
     context.translate(-staffX, -staffY);
@@ -34,7 +34,6 @@ function Staff(staffX, staffY, bodyX, bodyY) {
     fn();
 
     context.restore();
-
   }
 
   this.draw = function(canvas) {
@@ -59,19 +58,18 @@ function Staff(staffX, staffY, bodyX, bodyY) {
 
     rotateArm(context, function() {
       rotateStaff(context, function() {
-        context.strokeStyle = 'orange';
-        context.lineWidth = 3;
+        context.fillStyle = 'orange';
 
         context.beginPath();
         context.arc(staffX + length / 2 + radius / 2, staffY, radius, Math.PI, 3 * Math.PI, false);
         context.closePath();
-        context.stroke();
+        context.fill();
 
         context.beginPath();
         context.arc(staffX - length / 2 - radius / 2, staffY, radius, 0, 2 * Math.PI, false);
         context.closePath();
 
-        context.stroke();
+        context.fill();
       });
     });
   };
