@@ -53,6 +53,15 @@
     [100, 300]
   );
 
+  var pathB = new Path.Linear(
+    [500, 300],
+    [300, 100],
+    [100, 300],
+    [300, 500],
+    [500, 300]
+  );
+
+
   function doubles() {
     canvas.clear();
     trails.fade();
@@ -70,8 +79,9 @@
     }
     t++;
     staffA.staffAngle = t;
-    staffB.staffAngle = -t;
+    staffB.staffAngle = t;
     staffA.setPosition(pathA.at(t / 360));
+    staffB.setPosition(pathB.at(t / 360));
   }
 
   loop(doubles);

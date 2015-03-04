@@ -4,6 +4,7 @@ function Staff(x, y) {
   var length = 200;
 
   this.staffAngle = 0;
+  this.color = 'orange';
 
   function rotateStaff(context, fn) {
     context.save();
@@ -36,7 +37,7 @@ function Staff(x, y) {
     var context = canvas.context;
 
     rotateStaff(context, function() {
-      context.fillStyle = 'orange';
+      context.fillStyle = self.color;
 
       context.beginPath();
       context.arc(x + length / 2 + radius / 2, y, radius, Math.PI, 3 * Math.PI, false);
