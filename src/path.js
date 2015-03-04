@@ -8,3 +8,19 @@ Path.Linear = function(start, end) {
     return [x,y];
   };
 };
+
+Path.Compound = function() {
+  var paths = arguments;
+
+  this.at = function(i) {
+    var pathIndex = Math.floor(i * paths.length);
+    var pathI = i * paths.length - pathIndex;
+    var path = paths[pathIndex];
+
+    if(path) {
+      return path.at(pathI);
+    } else {
+      return paths[paths.length - 1].at(1);
+    }
+  };
+};
