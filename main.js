@@ -33,16 +33,14 @@ var pathA = new Path.Linear(
   [100, 300],
   [300, 500],
   [500, 300],
-  [300, 100],
-  [100, 300]
+  [300, 100]
 );
 
 var pathB = new Path.Linear(
   [500, 300],
   [300, 100],
   [100, 300],
-  [300, 500],
-  [500, 300]
+  [300, 500]
 );
 
 function displayPoints(points, selector) {
