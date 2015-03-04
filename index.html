@@ -6,6 +6,7 @@
   <script src="src/canvas.js"></script>
   <script src="src/trig.js"></script>
   <script src="src/staff.js"></script>
+  <script src="src/path.js"></script>
   <style>
     canvas {
       position: absolute;
@@ -44,6 +45,8 @@
   var staffA = new Staff(300, 300);
   var staffB = new Staff(300, 300);
 
+  var pathA = new Path.Linear([300, 0], [300, 600]);
+
   function doubles() {
     canvas.clear();
     trails.fade();
@@ -62,6 +65,8 @@
     t++;
     staffA.staffAngle = t;
     staffB.staffAngle = -t;
+    staffA.setPosition(pathA.at(t / 360));
+    staffB.setPosition(pathA.at(1 - t / 360));
   }
 
   loop(doubles);
