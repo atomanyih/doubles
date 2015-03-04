@@ -1,16 +1,9 @@
-function Staff(startAngle, bodyX, bodyY) {
+function Staff(staffX, staffY) {
   var self = this;
   var radius = 10;
   var length = 200;
 
-  var staffX = 300;
-  var staffY = 300;
-
   this.staffAngle = 0;
-
-  function degreesToRadians(degrees) {
-    return Math.PI / 180 * degrees;
-  }
 
   function rotateStaff(context, fn) {
     context.save();
