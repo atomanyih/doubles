@@ -18,6 +18,7 @@
 <script>
   var canvas = new Canvas('view');
   var trails = new Canvas('trails');
+  var t = 0;
 
   function loop(fn) {
     function main() {
@@ -36,13 +37,13 @@
     trails.fade();
 
     var gridSize = 600;
-    var squareSize = gridSize/3;
+    var squareSize = gridSize / 3;
     canvas.context.strokeStyle = 'white';
-    canvas.context.strokeRect(0,0,gridSize,gridSize);
-    canvas.context.strokeRect(squareSize,0,squareSize*2,gridSize);
-    canvas.context.strokeRect(squareSize*2,0,squareSize,gridSize);
-    canvas.context.strokeRect(0,squareSize,gridSize,squareSize*2);
-    canvas.context.strokeRect(0,squareSize*2,gridSize,squareSize);
+    canvas.context.strokeRect(0, 0, gridSize, gridSize);
+    canvas.context.strokeRect(squareSize, 0, squareSize * 2, gridSize);
+    canvas.context.strokeRect(squareSize * 2, 0, squareSize, gridSize);
+    canvas.context.strokeRect(0, squareSize, gridSize, squareSize * 2);
+    canvas.context.strokeRect(0, squareSize * 2, gridSize, squareSize);
 
     staffA.draw(canvas);
     staffB.draw(canvas);
@@ -50,10 +51,12 @@
     staffA.drawTrails(trails);
     staffB.drawTrails(trails);
 
-    staffA.process();
-    staffB.process();
-
-
+    if (t == 360) {
+      t = 0;
+    }
+    t++;
+    staffA.staffAngle = t;
+    staffB.staffAngle = -t;
   }
 
   loop(doubles);

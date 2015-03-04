@@ -1,36 +1,22 @@
 function Staff(startAngle, bodyX, bodyY) {
+  var self = this;
   var radius = 10;
   var length = 200;
 
-  var staffX, staffY;
+  var staffX = 300;
+  var staffY = 300;
 
-  var staffAngle = 0;
-  var armAngle = 0;
-
-  this.staffRotation = 1;
-  this.armRotation = 1;
+  this.staffAngle = 0;
 
   function degreesToRadians(degrees) {
     return Math.PI / 180 * degrees;
-  }
-
-  function rotateArm(context, fn) {
-    context.save();
-
-    context.translate(bodyX, bodyY);
-    context.rotate(degreesToRadians(armAngle));
-    context.translate(-bodyX, -bodyY);
-
-    fn();
-
-    context.restore();
   }
 
   function rotateStaff(context, fn) {
     context.save();
 
     context.translate(staffX, staffY);
-    context.rotate(degreesToRadians(staffAngle));
+    context.rotate(degreesToRadians(self.staffAngle));
     context.translate(-staffX, -staffY);
 
     fn();
@@ -70,19 +56,5 @@ function Staff(startAngle, bodyX, bodyY) {
 
       context.fill();
     });
-  };
-
-  this.process = function() {
-    armAngle += this.armRotation;
-    staffAngle += this.staffRotation;
-    staffX = bodyX + 200 * Math.cos(degreesToRadians(armAngle + startAngle));
-    staffY = bodyY + 200 * Math.sin(degreesToRadians(armAngle + startAngle));
-
-    if (armAngle == 90) {
-      this.armRotation *= -1;
-    }
-    if (armAngle == -90) {
-      this.armRotation *= -1;
-    }
   };
 }
