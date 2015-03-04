@@ -1,5 +1,10 @@
 function Canvas(elementId) {
+  var self = this;
   var canvas = document.getElementById(elementId);
+
+  canvas.addEventListener('click', function(e) {
+    self.onClick(e);
+  });
 
   this.context = canvas.getContext('2d');
 
@@ -19,4 +24,6 @@ function Canvas(elementId) {
     this.context.fillStyle = 'rgba(0,0,0,.01)';
     this.context.fillRect(-15, -15, canvas.width, canvas.height);
   };
+
+  this.onClick = function() {};
 }

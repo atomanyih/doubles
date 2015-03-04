@@ -4,6 +4,14 @@ var trails = new Canvas('trails');
 canvas.context.translate(15, 15);
 trails.context.translate(15, 15);
 
+canvas.onClick = function(e) {
+  selectedPoint[0] = e.x;
+  selectedPoint[1] = e.y;
+
+  displayPoints(pathA.points, '.points#staff-a');
+  displayPoints(pathB.points, '.points#staff-b');
+};
+
 var t = 0;
 
 function loop(fn) {
@@ -44,12 +52,18 @@ var pathB = new Path.Linear(
   [300, 500]
 );
 
+var selectedPoint;
+
 function displayPoints(points, selector) {
   var containerEl = document.querySelector(selector);
+  containerEl.innerHTML = '';
 
   points.forEach(function(point) {
     var pointEl = document.createElement('div');
     pointEl.innerText = '(' + point + ')';
+    pointEl.addEventListener('click', function() {
+      selectedPoint = point;
+    });
     containerEl.appendChild(pointEl);
   });
 }
