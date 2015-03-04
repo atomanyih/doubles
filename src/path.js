@@ -1,8 +1,14 @@
 var Path = {};
 
 Path.Linear = function() {
-  var points = arguments;
+  var points = Array.prototype.slice.call(arguments);
   var numSegments = points.length - 1;
+
+  Object.defineProperty(this, 'points', {
+    get: function() {
+      return points;
+    }
+  });
 
   function interpolate(i, start, end) {
     var x = (end[0] - start[0]) * i + start[0];

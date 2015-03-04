@@ -12,89 +12,40 @@
       background: black;
       overflow: hidden;
     }
-    canvas {
+
+    #trails {
       position: absolute;
+      z-index: -1;
+    }
+
+    #canvas-container {
+      display: inline;
+      float: left;
+    }
+
+    #sidebar {
+      color: white;
+      padding-top: 15px;
+    }
+
+    .points {
+      float: top;
+      margin-top: 10px;
     }
   </style>
 </head>
 
 <body>
-<canvas id="trails" width="630" height="630"></canvas>
-<canvas id="view" width="630" height="630"></canvas>
-<script>
-  var canvas = new Canvas('view');
-  var trails = new Canvas('trails');
-
-  canvas.context.translate(15, 15);
-  trails.context.translate(15, 15);
-
-  var t = 0;
-
-  function loop(fn) {
-    function main() {
-      fn();
-      requestAnimationFrame(main);
-    }
-
-    main();
-  }
-
-  function drawGrid() {
-    var gridSize = 600;
-    var squareSize = gridSize / 3;
-    canvas.context.strokeStyle = 'white';
-    canvas.context.strokeRect(0, 0, gridSize, gridSize);
-    canvas.context.strokeRect(squareSize, 0, squareSize * 2, gridSize);
-    canvas.context.strokeRect(squareSize * 2, 0, squareSize, gridSize);
-    canvas.context.strokeRect(0, squareSize, gridSize, squareSize * 2);
-    canvas.context.strokeRect(0, squareSize * 2, gridSize, squareSize);
-  }
-
-  var staffA = new Staff(300, 300);
-  var staffB = new Staff(300, 300);
-
-  var pathA = new Path.Linear(
-    [100, 300],
-    [300, 500],
-    [500, 300],
-    [300, 100],
-    [100, 300]
-  );
-
-  var pathB = new Path.Linear(
-    [500, 300],
-    [300, 100],
-    [100, 300],
-    [300, 500],
-    [500, 300]
-  );
-
-
-  function doubles() {
-    canvas.clear();
-    trails.fade();
-
-    drawGrid();
-
-    staffA.staffAngle = t;
-    staffB.staffAngle = t;
-    staffA.setPosition(pathA.at(t / 360));
-    staffB.setPosition(pathB.at(t / 360));
-
-    staffA.draw(canvas);
-    staffB.draw(canvas);
-
-    staffA.drawTrails(trails);
-    staffB.drawTrails(trails);
-
-    if (t == 360) {
-      t = 0;
-    }
-    t++;
-  }
-
-  loop(doubles);
-</script>
-
+<div id="canvas-container">
+  <canvas id="trails" width="630" height="630"></canvas>
+  <canvas id="view" width="630" height="630"></canvas>
+</div>
+<div id="sidebar">
+  <div id="staff-a" class="points">
+  </div>
+  <div id="staff-b" class="points">
+  </div>
+</div>
+<script src="main.js"></script>
 </body>
 </html>

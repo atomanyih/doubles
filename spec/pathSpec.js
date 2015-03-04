@@ -21,4 +21,20 @@ describe('Linear', function() {
       expect(this.path.at(1)).toEqual([1, 1]);
     });
   });
+
+  describe('points', function() {
+    it('returns provided points', function() {
+      var path = new Path.Linear([0, 0], [0, 1]);
+
+      expect(path.points).toEqual([[0, 0], [0, 1]])
+    });
+
+    it('cannot be set', function() {
+      var path = new Path.Linear([0, 0], [0, 1]);
+
+      path.points = [[0, 0]];
+
+      expect(path.points).toEqual([[0, 0], [0, 1]])
+    });
+  });
 });
