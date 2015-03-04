@@ -30,13 +30,7 @@
     main();
   }
 
-  var staffA = new Staff(300, 300);
-  var staffB = new Staff(300, 300);
-
-  function doubles() {
-    canvas.clear();
-    trails.fade();
-
+  function drawGrid() {
     var gridSize = 600;
     var squareSize = gridSize / 3;
     canvas.context.strokeStyle = 'white';
@@ -45,7 +39,16 @@
     canvas.context.strokeRect(squareSize * 2, 0, squareSize, gridSize);
     canvas.context.strokeRect(0, squareSize, gridSize, squareSize * 2);
     canvas.context.strokeRect(0, squareSize * 2, gridSize, squareSize);
+  }
 
+  var staffA = new Staff(300, 300);
+  var staffB = new Staff(300, 300);
+
+  function doubles() {
+    canvas.clear();
+    trails.fade();
+
+    drawGrid();
     staffA.draw(canvas);
     staffB.draw(canvas);
 
