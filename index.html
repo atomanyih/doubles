@@ -8,18 +8,26 @@
   <script src="src/staff.js"></script>
   <script src="src/path.js"></script>
   <style>
+    body {
+      background: black;
+      overflow: hidden;
+    }
     canvas {
       position: absolute;
     }
   </style>
 </head>
 
-<body style="background-color: black; overflow: hidden">
-<canvas id="trails" width="1000" height="1000"></canvas>
-<canvas id="view" width="1000" height="1000"></canvas>
+<body>
+<canvas id="trails" width="630" height="630"></canvas>
+<canvas id="view" width="630" height="630"></canvas>
 <script>
   var canvas = new Canvas('view');
   var trails = new Canvas('trails');
+
+  canvas.context.translate(15, 15);
+  trails.context.translate(15, 15);
+
   var t = 0;
 
   function loop(fn) {
@@ -68,6 +76,11 @@
 
     drawGrid();
 
+    staffA.staffAngle = t;
+    staffB.staffAngle = t;
+    staffA.setPosition(pathA.at(t / 360));
+    staffB.setPosition(pathB.at(t / 360));
+
     staffA.draw(canvas);
     staffB.draw(canvas);
 
@@ -78,10 +91,6 @@
       t = 0;
     }
     t++;
-    staffA.staffAngle = t;
-    staffB.staffAngle = t;
-    staffA.setPosition(pathA.at(t / 360));
-    staffB.setPosition(pathB.at(t / 360));
   }
 
   loop(doubles);

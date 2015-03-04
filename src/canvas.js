@@ -12,11 +12,11 @@ function Canvas(elementId) {
   };
 
   this.clear = function() {
-    this.context.clearRect(0, 0, canvas.width, canvas.height);
+    this.context.clearRect(-15, -15, canvas.width, canvas.height);
   };
 
   this.fade = function() {
     this.context.fillStyle = 'rgba(0,0,0,.01)';
-    this.context.fillRect(0, 0, canvas.width, canvas.height);
+    this.context.fillRect(-15, -15, canvas.width, canvas.height);
   };
 }
