@@ -1,7 +1,5 @@
 var canvas = new Canvas('view');
 var trails = new Canvas('trails');
-var pointsAEl = document.querySelector('.points#staff-a');
-var pointsBEl = document.querySelector('.points#staff-b');
 
 canvas.context.translate(15, 15);
 trails.context.translate(15, 15);
@@ -47,17 +45,18 @@ var pathB = new Path.Linear(
   [500, 300]
 );
 
-pathA.points.forEach(function(point) {
-  var pointEl = document.createElement('div');
-  pointEl.innerText = '(' + point + ')';
-  pointsAEl.appendChild(pointEl);
-});
+function displayPoints(points, selector) {
+  var containerEl = document.querySelector(selector);
 
-pathB.points.forEach(function(point) {
-  var pointEl = document.createElement('div');
-  pointEl.innerText = '(' + point + ')';
-  pointsBEl.appendChild(pointEl);
-});
+  points.forEach(function(point) {
+    var pointEl = document.createElement('div');
+    pointEl.innerText = '(' + point + ')';
+    containerEl.appendChild(pointEl);
+  });
+}
+
+displayPoints(pathA.points, '.points#staff-a');
+displayPoints(pathB.points, '.points#staff-b');
 
 function doubles() {
   canvas.clear();
