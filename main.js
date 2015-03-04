@@ -19,6 +19,7 @@ function drawGrid() {
   var gridSize = 600;
   var squareSize = gridSize / 3;
   canvas.context.strokeStyle = 'white';
+  canvas.context.lineWidth = 2;
   canvas.context.strokeRect(0, 0, gridSize, gridSize);
   canvas.context.strokeRect(squareSize, 0, squareSize * 2, gridSize);
   canvas.context.strokeRect(squareSize * 2, 0, squareSize, gridSize);
