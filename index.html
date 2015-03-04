@@ -45,11 +45,12 @@
   var staffA = new Staff(300, 300);
   var staffB = new Staff(300, 300);
 
-  var pathA = new Path.Compound(
-    new Path.Linear([100, 300], [300, 500]),
-    new Path.Linear([300, 500], [500, 300]),
-    new Path.Linear([500, 300], [300, 100]),
-    new Path.Linear([300, 100], [100, 300])
+  var pathA = new Path.Linear(
+    [100, 300],
+    [300, 500],
+    [500, 300],
+    [300, 100],
+    [100, 300]
   );
 
   function doubles() {
